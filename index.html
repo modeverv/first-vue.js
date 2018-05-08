@@ -1,36 +1,67 @@
+<!DOCTYPE html>
 <html lang="ja">
-  <meta charset="utf-8">
-  <title>vue事始め</title>
-  <body>
-    <div id="app">
-      {{ message }}
-    </div>
-    <div id="app-2">
-      <span v-bind:title="message">
-	Hover your mouse over me for a few seconds
-	to see my dynamically bound title!
-      </span>
-    </div>
-    <div id="app-3">
-      <span v-if="seen">Now you see me</span>
-    </div>
-    <div id="app-4">
-      <ol>
-	<li v-for="todo in todos">
-	  {{ todo.text }}
-	</li>
-      </ol>
-    </div>
-    <div id="app-5">
-      <p>{{ message }}</p>
-      <button v-on:click="reverseMessage">Reverse Message</button>
-      </div>
+<meta charset="utf-8">
+<title>vue事始め</title>
+
+<body>
+  <div id="app">
+    {{ message }}
+  </div>
+  <div id="app-2">
+    <span v-bind:title="message">
+      Hover your mouse over me for a few seconds to see my dynamically bound title!
+    </span>
+  </div>
+  <div id="app-3">
+    <span v-if="seen">Now you see me</span>
+  </div>
+  <div id="app-4">
+    <ol>
+      <li v-for="todo in todos">
+        {{ todo.text }}
+      </li>
+    </ol>
+  </div>
+  <div id="app-5">
+    <p>{{ message }}</p>
+    <button v-on:click="reverseMessage">Reverse Message</button>
+  </div>
+  <div id="app-6">
+    <input v-model="message">
+    <p>{{ message }}</p>
+  </div>
+
+  <div id="app-7">
+    <ol>
+      <todo-item v-for="item in gList" v-bind:todo="item"></todo-item>
+    </ol>
+  </div>
+  <div id="vm1">
+    <p>Original message: "{{ message }}"</p>
+    <p>Computed reversed message: "{{ reversedMessage }}"</p>
+  </div>
+
+  <div id="vm2">
+    <input v-model="firstName">
+    <input v-model="lastName">
+    <input v-model="fullName">
+    <span>{{ fullName }}</span>
+  </div>
+
+  <div id="watch-example">
+    <p>
+      Ask a yes/no question:
+      <input v-model="question">
+    </p>
+    <p>{{ answer }}</p>
+  </div>
 
 
-    
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
+  <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+  <script src="app.js"></script>
+</body>
 
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="app.js"></script>
-  </body>
 </html>
