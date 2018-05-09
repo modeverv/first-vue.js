@@ -121,16 +121,34 @@ var watchExampleVM = new Vue({
   data: {
     question: '',
     answer: 'I can\'t give you a answer',
+    isActive: false,
+    hasError: false,
+    error: null,
+    styleObject: {
+      color: 'blue',
+      fontSize: '20px',
+    },
   },
   watch: {
     question: function (newQ, oldQ) {
+      this.isActive = false;
       this.answer = 'Waiting for you to stop typing';
       this.debouncedGetAnswer();
     },
   },
+  computed: {
+    classObject: function () {
+      hoge = {
+        active: this.isActive,
+        'text-danger': true
+      }
+      console.log(hoge)
+      return hoge;
+    }
+  },
   created: function () {
     console.log('created');
-    this.debouncedGetAnswer = _.debounce(this.getAnswer, 500);
+    this.debouncedGetAnswer = _.debounce(this.getAnswer, 1000);
   },
   methods: {
     getAnswer: function () {
@@ -143,10 +161,18 @@ var watchExampleVM = new Vue({
       axios.get('https://yesno.wtf/api')
         .then(function (response) {
           vm.answer = _.capitalize(response.data.answer);
+          vm.isActive = true
         })
         .catch(function (err) {
           vm.answer = 'Error' + err;
         });
+
     }
   }
 });
+
+var vm3 = new Vue({
+  el: '#vm3',
+  data: {},
+  
+})

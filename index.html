@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html lang="ja">
-<meta charset="utf-8">
-<title>vue事始め</title>
+
+<head>
+  <meta charset="utf-8">
+  <title>vue事始め</title>
+  <link href="app.css" rel="stylesheet" type="text/css">
+</head>
 
 <body>
   <div id="app">
@@ -53,7 +57,20 @@
       Ask a yes/no question:
       <input v-model="question">
     </p>
+    <div class="static" v-bind:class="{ active: isActive, 'text-danger': hasError }">
+      answerd
+    </div>
+    <div v-bind:class="classObject">
+      classObject
+    </div>
+    <div v-bind:style="styleObject">
+      styleObject
+    </div>
     <p>{{ answer }}</p>
+  </div>
+
+  <div id="vm3">
+    
   </div>
 
 

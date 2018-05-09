@@ -1,0 +1,9 @@
+.static {
+    color: red;
+    display: none;
+}
+
+.active {
+    color: green;
+    display: block;
+}
