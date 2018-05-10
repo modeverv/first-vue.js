@@ -173,6 +173,102 @@ var watchExampleVM = new Vue({
 
 var vm3 = new Vue({
   el: '#vm3',
-  data: {},
-  
+  data: {
+    type: "A",
+    loginType: "username"
+  },
+});
+
+var vm4 = new Vue({
+  el: "#vm4",
+  data: {
+    parentMessage: 'parent',
+    items: [{
+        message: 'Foo'
+      },
+      {
+        message: 'Bar'
+      },
+    ]
+  }
+});
+
+var vm5 = new Vue({
+  el: "#vm5",
+  data: {
+    object: {
+      firstName: "firstName",
+      lastName: "lastName",
+      age: 30,
+    },
+    items: [{
+        id: 1,
+        mes: "m1"
+      },
+      {
+        id: 2,
+        mes: "m2"
+      },
+    ],
+    numbers: (function () {
+      var ar = [];
+      for (var i = 0, l = 10; i < l; i++) {
+        ar.push(i);
+      }
+      return ar;
+    })()
+  },
+  computed: {
+    evenNumbers: function () {
+      return this.numbers.filter(function (number) {
+        return number % 2 == 0;
+      });
+    }
+  },
+  methods: {
+    even: function (numbers) {
+      return numbers.filter(function (n) {
+        return n % 2 == 0
+      })
+    }
+  }
+})
+Vue.component('todo-item', {
+  template: '\
+    <li>\
+      {{ title }}\
+      <button v-on:click="$emit(\'remove\')">X</button>\
+    </li>\
+  ',
+  props: ['title']
+})
+
+var aa = new Vue({
+  el: '#todo-list-example',
+  data: {
+    newTodoText: '',
+    todos: [{
+        id: 1,
+        title: 'Do the dishes',
+      },
+      {
+        id: 2,
+        title: 'Take out the trash',
+      },
+      {
+        id: 3,
+        title: 'Mow the lawn'
+      }
+    ],
+    nextTodoId: 4
+  },
+  methods: {
+    addNewTodo: function () {
+      this.todos.push({
+        id: this.nextTodoId++,
+        title: this.newTodoText
+      })
+      this.newTodoText = ''
+    }
+  }
 })

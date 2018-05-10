@@ -70,9 +70,55 @@
   </div>
 
   <div id="vm3">
-    
+    <div v-if="type == 'A'">A</div>
+    <div v-else-if="type == 'B'">B</div>
+    <div v-else="">C</div>
+    <template v-if="loginType === 'username'">
+      <label>Username</label>
+      <input placeholder="Enter your username" key="username-input">
+    </template>
+    <template v-else>
+      <label>Email</label>
+      <input placeholder="Enter your email address" key="email-input">
+    </template>
+    <input v-model="type">
+    <input v-model="loginType">
   </div>
 
+  <div id="vm4">
+    <ul>
+      <li v-for="(item, index) in items">
+        {{ parentMessage }} - {{ index }} {{ item.message }}
+      </li>
+    </ul>
+  </div>
+
+  <div id="vm5">
+    <ul>
+      <li v-for="(value, key,index) in object">
+        {{ index }} - {{ key }} : {{ value }}
+      </li>
+      <li v-for="item in items" :key="item.id">
+        {{ item.mes }}
+      </li>
+      <li v-for="n in evenNumbers">
+        {{ n }}
+      </li>
+      <li v-for="n in even(numbers)">
+        {{ n }}
+      </li>
+      <li v-for="n in 10">
+        {{ n }}
+      </li>
+    </ul>
+  </div>
+
+  <div id="todo-list-example">
+    <input v-model="newTodoText" v-on:keyup.enter="addNewTodo" placeholder="Add a todo">
+    <ul>
+      <li is="todo-item" v-for="(todo, index) in todos" v-bind:key="todo.id" v-bind:title="todo.title" v-on:remove="todos.splice(index, 1)"></li>
+    </ul>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
