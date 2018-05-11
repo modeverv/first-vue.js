@@ -120,6 +120,65 @@
     </ul>
   </div>
 
+  <div id="example-1">
+    <button v-on:click="counter += 1">Increment</button>
+    <p>{{ counter }}</p>
+  </div>
+
+  <div id="example-2">
+    <button v-on:click="greet">Greet</button>
+    <input @keyup.ctrl.67="clear">Ctrl + Cで反応
+  </div>
+
+  <div id="vm_i1">
+    <h2>Input 1</h2>
+    <input v-model="message1" placeholder="edit me">
+    <p>Message is:{{ message1 }}</p>
+    <textarea v-model.trim="message2" placeholder="add multiline"></textarea>
+    <P style="white-space: pre-line">Multiline(trim option) :{{ message2 }}</p>
+    <input type="checkbox" id="checkbox" v-model="checked">
+    <label for="checkbox">{{ checked }}</label>
+    <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+    <label for="jack">Jack</label>
+    <input type="checkbox" id="john" value="John" v-model="checkedNames">
+    <label for="john">John</label>
+    <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+    <label for="mike">Mike</label>
+    <br>
+    <span>Checked names: {{ checkedNames }}</span>
+    <hr>
+    <input type="radio" id="one" value="One" v-model="picked">
+    <label for="one">One</label>
+    <br>
+    <input type="radio" id="two" value="Two" v-model="picked">
+    <label for="two">Two</label>
+    <br>
+    <span>Picked: {{ picked }}</span>
+    <hr>
+    <select v-model="selected">
+      <option disabled value="">Please select one</option>
+      <option>A</option>
+      <option>B</option>
+      <option>C</option>
+    </select>
+    <span>Selected: {{ selected }}</span>
+    <p>v-model の式の初期値がオプションのどれとも一致しない場合、 select要素は “未選択” の状態で描画されます。iOS ではこの場合、iOS が change イベントを発生させないため、最初のアイテムを選択できなくなります。したがって、上記の例に示すように、空の値で無効なオプションを指定することを推奨します。</p>
+    <select v-model="selected2" multiple style="width:100px">
+      <option>A</option>
+      <option>B</option>
+      <option>C</option>
+    </select>
+    <br>
+    <span>Selected: {{ selected2 }}</span>
+    <hr>
+    <select v-model="selected3">
+      <option v-for="option in options" v-bind:value="option.value">
+        {{ option.text }}
+      </option>
+    </select>
+    <span>Selected: {{ selected3 }}</span>
+  </div>
+
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>

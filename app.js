@@ -271,4 +271,56 @@ var aa = new Vue({
       this.newTodoText = ''
     }
   }
+});
+
+var e_example1 = new Vue({
+  el: "#example-1",
+  data: {
+    counter: 0
+  }
+});
+
+var e_example2 = new Vue({
+  el: "#example-2",
+  data: {
+    name: 'Vue.js'
+  },
+  methods: {
+    greet: function (event) {
+      alert('Hello ' + this.name + " " + (new Date()));
+      if (event) {
+        alert(event.target.tagName);
+      }
+    },
+    clear: function (e) {
+      alert("ctrl + c");
+    }
+  }
+});
+
+var vm_i1 = new Vue({
+  el: "#vm_i1",
+  data: {
+    message1: "",
+    message2: "",
+    checked: true,
+    checkedNames: [],
+    picked: "Two",
+    selected: "",
+    selected2: [],
+    selected3: "",
+    options: [{
+        text: 'One',
+        value: 'A'
+      },
+      {
+        text: 'Two',
+        value: 'B'
+      },
+      {
+        text: 'Three',
+        value: 'C'
+      },
+    ],
+  }
 })
