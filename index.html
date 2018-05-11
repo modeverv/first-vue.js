@@ -179,11 +179,37 @@
     <span>Selected: {{ selected3 }}</span>
   </div>
 
+  <div id="c-vm1">
+    <button-counter></button-counter>
+    <button-counter></button-counter>
+    <button-counter></button-counter>
+    <blog-post title="My A"></blog-post>
+    <blog-post title="My B1"></blog-post>
+    <blog-post title="My C"></blog-post>
+    <blog-post v-for="post in posts" v-bind:key="post.id" v-bind:title="post.title"></blog-post>
+    <div :style="{fontSize: postFontSize + 'em'}">
+      <blog-post2 v-on:enlarge-text="postFontSize += 0.1" v-for="post in posts2" v-bind:key="post.id" v-bind:post="post"></blog-post2>
+    </div>
+    <div :style="{fontSize: postFontSize + 'em'}">
+      <blog-post2 v-on:enlarge-text="postFontSize += $event" v-for="post in posts2" v-bind:key="post.id" v-bind:post="post"></blog-post2>
+    </div>
+    <alert-box>SLOTテスト</alert-box>
+  </div>
+
+  <div id="dynamic-component-demo" class="demo">
+    <button v-for="tab in tabs" v-bind:key="tab" v-bind:class="[ 'tab-button', { nactive: currentTab === tab }]" v-on:click="currentTab = tab">{{ tab }}</button>
+    <component v-bind:is="currentTabComponent" class="tab"></component>
+  </div>
+  <!--
+  <div id="comp_v1">
+    <comp1></comp1>
+  </div>
+-->
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
-  <script src="app.js"></script>
+  <script src="app.js" type="module"></script>
 </body>
 
 </html>

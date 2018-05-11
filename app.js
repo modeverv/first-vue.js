@@ -323,4 +323,104 @@ var vm_i1 = new Vue({
       },
     ],
   }
+});
+
+Vue.component('button-counter', {
+  data: function () {
+    return {
+      count: 0
+    }
+  },
+  template: '<div class="blog-post">\
+  <button v-on: click="count++">You clicked me {{ count }} times.</button>\
+  </div>'
+});
+
+Vue.component('blog-post', {
+  props: ['title'],
+  template: '<h3>{{ title }}</h3>'
 })
+
+Vue.component('blog-post2', {
+  props: ['post'],
+  template: '<div class="blog-post">\
+    <h3>{{ post.title }}</h3>\
+    <button v-on:click="$emit(\'enlarge-text\')">Enlarge text</button>\
+    <button v-on:click="$emit(\'enlarge-text\', 0.1)" >Enlarge text2</button>\
+    <div v-html="post.content"></div>\
+  </div>'
+})
+
+Vue.component('alert-box', {
+  template: `
+    <div class="demo-alert-box">
+      <strong>Error!</strong>
+      <slot></slot>
+    </div>
+  `
+});
+
+var c_vm1 = new Vue({
+  el: "#c-vm1",
+  data: {
+    postFontSize: 1,
+    posts: [{
+        id: 1,
+        title: 'M A1'
+      },
+      {
+        id: 2,
+        title: 'M A2'
+      },
+      {
+        id: 3,
+        title: 'M A3'
+      },
+    ],
+    posts2: [{
+        id: 1,
+        title: 'M A1',
+        content: 'C1',
+      },
+      {
+        id: 2,
+        title: 'M A2',
+        content: 'C2',
+      },
+    ]
+  }
+});
+
+Vue.component('tab-home', {
+  template: '<div>Home component</div>'
+})
+Vue.component('tab-posts', {
+  template: '<div>Posts component</div>'
+})
+Vue.component('tab-archive', {
+  template: '<div>Archive component</div>'
+})
+
+new Vue({
+  el: '#dynamic-component-demo',
+  data: {
+    currentTab: 'Home',
+    tabs: ['Home', 'Posts', 'Archive']
+  },
+  computed: {
+    currentTabComponent: function () {
+      return 'tab-' + this.currentTab.toLowerCase()
+    }
+  }
+})
+/*
+// importとか使うのはwebpackとかがまだ必要だ。
+// とりあえず今はここまでで終わらせよう
+import c1 from './vue/c1.vue'
+var comp_v1 = new Vue({
+  el: "#comp_v1",
+  components: {
+    'comp1': c1,
+  }
+})
+*/
